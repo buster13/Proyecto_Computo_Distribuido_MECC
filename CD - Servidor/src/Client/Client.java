@@ -3,9 +3,11 @@ package Client;
 import Server.RemoteInterface;
 
 import java.net.MalformedURLException;
+import java.net.StandardSocketOptions;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Scanner;
 
 public class Client {
 
@@ -25,6 +27,18 @@ public class Client {
         System.out.println("A: " + service.read(0));
         System.out.println("Mult B: " + service.update(1,2,3));
         System.out.println("B: " + service.read(1));
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Que operacion quieres hacer? 3-Leer; 0-Asignar; 1-Sumar; 2-Multiplicar");
+        int oper = scan.nextInt();
+        System.out.println("Sobre que variable? 0-a; 1-b");
+        int var = scan.nextInt();
+        System.out.println("Que valor? 0-a; 1-b");
+        double valor = scan.nextInt();
+
+        System.out.println("El resultado es" + service.update(var,oper,valor) + " " + service.read(var));
+
     }
 }
 

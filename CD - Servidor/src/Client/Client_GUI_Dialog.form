@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Client.Client_GUI_Dialog">
+  <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="5" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="10" left="10" bottom="10" right="10"/>
+    <constraints>
+      <xy x="48" y="54" width="552" height="297"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="27fff" class="javax.swing.JButton" binding="conectarButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Conectar"/>
+        </properties>
+      </component>
+      <grid id="32379" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="56668" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Variables"/>
+            </properties>
+          </component>
+          <component id="96dd" class="javax.swing.JRadioButton" binding="rad_a">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <text value="a"/>
+            </properties>
+          </component>
+          <component id="d3012" class="javax.swing.JRadioButton" binding="rad_b">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <text value="b"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="36fb4" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="daf33" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="43c13" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Operación"/>
+                </properties>
+              </component>
+              <component id="6038c" class="javax.swing.JComboBox" binding="cmb_oper">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <model>
+                    <item value=""/>
+                    <item value="Leer"/>
+                    <item value="Asignar"/>
+                    <item value="Sumar"/>
+                    <item value="Multiplicar"/>
+                  </model>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="dd04" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="44a19" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Valor"/>
+                </properties>
+              </component>
+              <component id="ea953" class="javax.swing.JTextField" binding="txt_val">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <component id="6f865" class="javax.swing.JButton" binding="btn_exe">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Ejecutar"/>
+        </properties>
+      </component>
+      <scrollpane id="a7144">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8e78e" class="javax.swing.JTextArea" binding="txta_console">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="bf366" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="IP"/>
+        </properties>
+      </component>
+      <component id="c2bc" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Puerto"/>
+        </properties>
+      </component>
+      <component id="1085c" class="javax.swing.JTextField" binding="txt_Port">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="5099"/>
+        </properties>
+      </component>
+      <component id="a8fe5" class="javax.swing.JTextField" binding="txt_IP">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="localhost"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="rad_var">
+      <member id="d3012"/>
+      <member id="96dd"/>
+    </group>
+  </buttonGroups>
+</form>
