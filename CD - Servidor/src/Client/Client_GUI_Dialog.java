@@ -1,12 +1,16 @@
-package Client;
+package src.Client;
 
-import Server.RemoteInterface;
+import src.AES;
+import src.Server.RemoteInterface;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Client_GUI_Dialog extends JDialog {
     private JPanel contentPane;
@@ -27,9 +31,12 @@ public class Client_GUI_Dialog extends JDialog {
     private String var_letra = "";
     private RemoteInterface service;
 
+    private AES aes;
+
     public Client_GUI_Dialog() {
         setContentPane(contentPane);
         setModal(true);
+
 
 
         // call onCancel() when cross is clicked
@@ -98,15 +105,72 @@ public class Client_GUI_Dialog extends JDialog {
 
     private void onExec() {
         try {
+
+            JSONObject json = new JSONObject();
+            JSONParser parser = new JSONParser();
+            JSONObject answer_json;
+            String answer;
+            String request;
+
+
+            json.put("operation", operacion + "");
+            json.put("variable", variable + "");
+
+
+
+
+
             if (operacion == 3) {
-                txta_console.append("Variable " + var_letra + "= " + service.read(variable) + "\n");
+
+                //Se completa el json
+                json.put("value", "0");
+
+                //Se encripta el mensaje
+                request = aes.encrypt(json.toString());
+
+                //Se hace la solicitud al servidor
+                answer = aes.decrypt(service.operation(request));
+
+                //Se transforma el mensaje recibido a un json
+                answer_json = (JSONObject) parser.parse(answer);
+
+                txta_console.append("Variable " + var_letra + "= " + answer_json.get("result") + "\n");
             } else if (operacion > 3) {
                 txta_console.append("Operación no válida.\n");
             } else {
                 if (variable == 0 || variable == 1) {
+
                     value = Integer.parseInt(txt_val.getText());
-                    txta_console.append("Respuesta del servidor: " + service.update(variable, operacion, value) + "\n");
-                    txta_console.append("Valor actual de la variable  " + var_letra + ": " + service.read(variable) + "\n");
+
+                    //Se completa el json
+                    json.put("value", value + "");
+
+                    //Se encripta el mensaje
+                    request = aes.encrypt(json.toString());
+
+                    //Se hace la solicitud al servidor
+                    answer = aes.decrypt(service.operation(request));
+
+                    //Se transforma el mensaje recibido a un json
+                    answer_json = (JSONObject) parser.parse(answer);
+
+
+                    txta_console.append("Respuesta del servidor: " + answer_json.get("result") + "\n");
+
+                    json.clear();
+
+                    json.put("operation", "3");
+                    json.put("variable", variable + "");
+                    json.put("value", "0");
+
+                    request = aes.encrypt(json.toString());
+
+                    answer = aes.decrypt(service.operation(request));
+
+                    answer_json.clear();
+                    answer_json = (JSONObject) parser.parse(answer);
+
+                    txta_console.append("Valor actual de la variable  " + var_letra + ": " + answer_json.get("result") + "\n");
                     cmb_oper.setSelectedIndex(0);
                     txt_val.setText("");
                     txt_val.setEnabled(false);
@@ -119,6 +183,12 @@ public class Client_GUI_Dialog extends JDialog {
             txta_console.append("Error: " + e.toString() + "\n");
         } catch (NumberFormatException e) {
             txta_console.append("Error: Entrada no válida. Escribir un número entero.\n");
+        } catch (ParseException e) {
+            txta_console.append("Error: No se puede parsear el Json recibido.\n");
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            txta_console.append("Error: No se puede encriptar/desencriptar.\n");
+            throw new RuntimeException(e);
         }
     }
 
@@ -127,6 +197,8 @@ public class Client_GUI_Dialog extends JDialog {
             String lookup_Name = "rmi://" + txt_IP.getText() + ":" + txt_Port.getText() + "/Compute";
             service = (RemoteInterface) Naming.lookup(lookup_Name);
             txta_console.append("Status: Se estableció la conexión al servidor.\n");
+            aes = new AES();
+            aes.init();
             rad_a.setEnabled(true);
             rad_b.setEnabled(true);
             conectarButton.setEnabled(false);

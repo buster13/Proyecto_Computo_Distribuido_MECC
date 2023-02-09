@@ -1,6 +1,8 @@
-package Client;
+package src.Client;
 
-import Server.RemoteInterface;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+import src.Server.RemoteInterface;
 
 import java.net.MalformedURLException;
 import java.net.StandardSocketOptions;
@@ -8,10 +10,13 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Client {
 
-    public static void main(String[] args) throws MalformedURLException, NotBoundException, RemoteException {
+    public static void main(String[] args) throws MalformedURLException, NotBoundException, RemoteException, ParseException {
         RemoteInterface service = (RemoteInterface) Naming.lookup("rmi://localhost:5099/Compute");
         System.out.println("Set A: " + service.update(0,0,2));
         System.out.println("A: " + service.read(0));
@@ -30,7 +35,7 @@ public class Client {
 
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Que operacion quieres hacer? 3-Leer; 0-Asignar; 1-Sumar; 2-Multiplicar");
+        /*System.out.println("Que operacion quieres hacer? 3-Leer; 0-Asignar; 1-Sumar; 2-Multiplicar");
         int oper = scan.nextInt();
         System.out.println("Sobre que variable? 0-a; 1-b");
         int var = scan.nextInt();
@@ -38,6 +43,25 @@ public class Client {
         double valor = scan.nextInt();
 
         System.out.println("El resultado es" + service.update(var,oper,valor) + " " + service.read(var));
+        */
+
+
+        JSONObject json = new JSONObject();
+
+        json.put("operation", "1");
+        json.put("variable", "1");
+        json.put("value", "2");
+
+        try {
+            System.out.println(service.operation(json.toJSONString()));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 }
